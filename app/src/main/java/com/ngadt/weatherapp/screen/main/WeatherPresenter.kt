@@ -27,7 +27,33 @@ class WeatherPresenter internal constructor(private val weatherRepository: Weath
             }
 
             override fun onError(exception: Exception?) {
-                mView?.onError(exception)
+                mView?.onErrorWeather(exception)
+            }
+
+        }, id)
+    }
+
+    override fun getDayWeather(id: Int) {
+        weatherRepository.getDayWeather(object : OnResultListener<MutableList<Weather>> {
+            override fun onSuccess(data: MutableList<Weather>) {
+                mView?.onGetDaySuccess(data)
+            }
+
+            override fun onError(exception: Exception?) {
+                mView?.onErrorDay(exception)
+            }
+
+        }, id)
+    }
+
+    override fun getHourWeather(id: Int) {
+        weatherRepository.getHourWeather(object : OnResultListener<MutableList<Weather>> {
+            override fun onSuccess(data: MutableList<Weather>) {
+                mView?.onGetHourSuccess(data)
+            }
+
+            override fun onError(exception: Exception?) {
+                mView?.onErrorHour(exception)
             }
 
         }, id)

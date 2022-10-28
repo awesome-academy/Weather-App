@@ -31,7 +31,7 @@ class GetJsonFromUrl<T>(
     private fun callAPI() {
         mExecutor.execute {
             val responseJson =
-                getJsonFromUrl(urlString + Constant.BASE_API_KEY)
+                getJsonFromUrl(urlString + Constant.BASE_UNIT + Constant.BASE_API_KEY)
             data = ParseDataWithJson().parseJsonToData(JSONObject(responseJson), keyEntity) as? T
             mHandler.post {
                 try {

@@ -11,5 +11,7 @@ interface WeatherDataSource {
 
     interface Remote {
         fun getWeather(listener: OnResultListener<MutableList<Weather>>, id: Int)
+        fun getDayWeather(listener: OnResultListener<MutableList<Weather>>, id: Int)
+        fun getHourWeather(listener: OnResultListener<MutableList<Weather>>, id: Int)
     }
 }

@@ -12,6 +12,14 @@ class WeatherRepository(
         remote.getWeather(listener, id)
     }
 
+    override fun getDayWeather(listener: OnResultListener<MutableList<Weather>>, id: Int) {
+        remote.getDayWeather(listener, id)
+    }
+
+    override fun getHourWeather(listener: OnResultListener<MutableList<Weather>>, id: Int) {
+        remote.getHourWeather(listener, id)
+    }
+
     companion object {
         private var instance: WeatherRepository? = null
 
@@ -25,3 +33,4 @@ class WeatherRepository(
         //TODO("Not yet implemented")
     }
 }
+
