@@ -15,6 +15,23 @@ class WeatherRemoteDataSource : WeatherDataSource.Remote {
         )
     }
 
+    override fun getDayWeather(listener: OnResultListener<MutableList<Weather>>, id: Int) {
+        GetJsonFromUrl(
+            urlString = Constant.BASE_DAY_URL + Constant.BASE_ID + id,
+            keyEntity = WeatherEntry.DAYS,
+            listener = listener
+        )
+    }
+
+    override fun getHourWeather(listener: OnResultListener<MutableList<Weather>>, id: Int) {
+        GetJsonFromUrl(
+            urlString = Constant.BASE_HOUR_URL + Constant.BASE_ID + id,
+            keyEntity = WeatherEntry.HOUR,
+            listener = listener
+        )
+    }
+
+
     companion object {
         private var instance: WeatherRemoteDataSource? = null
 

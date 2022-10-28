@@ -9,8 +9,12 @@ class WeatherContract {
      * View
      */
     interface View {
-        fun onGetWeatherSuccess(movies: MutableList<Weather>)
-        fun onError(exception: Exception?)
+        fun onGetWeatherSuccess(weatherList: MutableList<Weather>)
+        fun onErrorWeather(exception: Exception?)
+        fun onGetDaySuccess(dayList: MutableList<Weather>)
+        fun onErrorDay(exception: Exception?)
+        fun onGetHourSuccess(hourList: MutableList<Weather>)
+        fun onErrorHour(exception: Exception?)
     }
 
     /**
@@ -18,5 +22,7 @@ class WeatherContract {
      */
     interface Presenter : BasePresenter<View> {
         fun getWeather(id: Int)
+        fun getDayWeather(id: Int)
+        fun getHourWeather(id: Int)
     }
 }

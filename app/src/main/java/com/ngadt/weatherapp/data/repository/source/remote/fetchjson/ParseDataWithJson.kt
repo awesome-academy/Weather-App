@@ -1,4 +1,5 @@
 package com.ngadt.weatherapp.data.repository.source.remote.fetchjson
+
 import com.ngadt.weatherapp.data.model.WeatherEntry
 import notNull
 import org.json.JSONException
@@ -15,6 +16,15 @@ class ParseDataWithJson {
                         data.add(it)
                     }
                 }
+                WeatherEntry.HOUR, WeatherEntry.DAYS -> {
+                    val jsonArray = jsonObject?.getJSONArray(WeatherEntry.DAYS)
+                    for (i in 0 until (jsonArray?.length() ?: 0)) {
+                        val item = parseJsonToObject(jsonArray?.getJSONObject(i), keyEntity)
+                        item.notNull {
+                            data.add(it)
+                        }
+                    }
+                }
             }
         } catch (e: JSONException) {
             e.printStackTrace()
@@ -27,6 +37,8 @@ class ParseDataWithJson {
             jsonObject?.notNull {
                 return when (keyEntity) {
                     WeatherEntry.WEATHERS -> ParseJson().weatherParseJson(it)
+                    WeatherEntry.DAYS -> ParseJson().dayParseJson(it)
+                    WeatherEntry.HOUR -> ParseJson().hourParseJson(it)
                     else -> null
                 }
             }
